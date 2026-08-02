@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_small2_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#FFFFFFFF"
+    android:gravity="center"
+    android:padding="3dp">
+
+    <!-- 오늘 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/small2_date_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18\n목"
+            android:textSize="8sp"
+            android:textColor="#555555"
+            android:gravity="center"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/small2_shift_today"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="G"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="#D3D1C7"
+            android:background="@drawable/pill_night"/>
+    </LinearLayout>
+
+    <View android:layout_width="1dp" android:layout_height="28dp" android:background="#EEEEEE"/>
+
+    <!-- 내일 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/small2_date_tmr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19\n금"
+            android:textSize="8sp"
+            android:textColor="#555555"
+            android:gravity="center"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/small2_shift_tmr"
+            android:layout_width="28dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="G"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="#D3D1C7"
+            android:background="@drawable/pill_night"/>
+    </LinearLayout>
+
+</LinearLayout>

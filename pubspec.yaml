@@ -1,0 +1,40 @@
+name: shift_schedule
+description: CSPI Shift Schedule
+version: 1.8.2+20
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 로컬 저장소 (조 선택, 알림 설정 저장)
+  shared_preferences: ^2.2.3
+
+  # 공공 API 호출 (공휴일)
+  http: ^1.2.1
+
+  # XML 파싱 (공공 API 응답 형식)
+  xml: ^6.5.0
+
+  # 로컬 알림
+  flutter_local_notifications: ^17.2.2
+
+  # 홈 위젯 연동
+  home_widget: ^0.6.0
+
+  # 아이콘
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/assets/roy_cat.png
+    - lib/assets/alarm_character.png
+  # 앱 아이콘은 flutter_launcher_icons 패키지로 별도 설정 권장

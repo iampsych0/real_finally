@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 기본형 위젯: 오늘+내일 (3x2) 흰 배경 -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFFFF"
+    android:padding="14dp">
+
+    <!-- 상단: 조 + 날짜 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/widget_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B조"
+            android:textSize="11sp"
+            android:textColor="#185FA5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/widget_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="6월 18일 (목)"
+            android:textSize="10sp"
+            android:textColor="#888780" />
+    </LinearLayout>
+
+    <!-- 구분선 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
+        android:background="#EEEEEE" />
+
+    <!-- 오늘 근무 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/widget_shift_label"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="G"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#D3D1C7"
+            android:background="#2C2C2A" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:id="@+id/widget_shift_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="야간근무"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A" />
+
+            <TextView
+                android:id="@+id/widget_shift_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23:00 – 07:00"
+                android:textSize="11sp"
+                android:textColor="#888780" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 구분선 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="#EEEEEE" />
+
+    <!-- 내일 -->
+    <TextView
+        android:id="@+id/widget_tomorrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내일 → 야간 G"
+        android:textSize="11sp"
+        android:textColor="#378ADD" />
+
+</LinearLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 주간형 위젯: 내 조 7일 가로 나열 (4x1) -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_weekly_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#FFFFFFFF"
+    android:padding="10dp"
+    android:gravity="center_vertical">
+
+    <!-- 오늘 (하이라이트) -->
+    <LinearLayout android:id="@+id/week_day_0"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center" android:background="#F0F7FF"
+        android:layout_marginEnd="2dp">
+        <TextView android:id="@+id/week_date_0"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="18" android:textSize="13sp" android:textStyle="bold"
+            android:textColor="#378ADD"/>
+        <TextView android:id="@+id/week_dow_0"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="목" android:textSize="10sp" android:textColor="#378ADD"/>
+        <TextView android:id="@+id/week_shift_0"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:gravity="center" android:text="G"
+            android:textSize="12sp" android:textStyle="bold"
+            android:textColor="#D3D1C7" android:background="#2C2C2A"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- 나머지 6일 -->
+    <LinearLayout android:id="@+id/week_day_1"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center" android:layout_marginEnd="2dp">
+        <TextView android:id="@+id/week_date_1"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="19" android:textSize="12sp" android:textColor="#555555"/>
+        <TextView android:id="@+id/week_dow_1"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="금" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/week_shift_1"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:gravity="center" android:text="G"
+            android:textSize="11sp" android:textStyle="bold"
+            android:textColor="#D3D1C7" android:background="#2C2C2A"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/week_day_2"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center" android:layout_marginEnd="2dp">
+        <TextView android:id="@+id/week_date_2"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="20" android:textSize="12sp" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/week_dow_2"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="토" android:textSize="10sp" android:textColor="#378ADD"/>
+        <TextView android:id="@+id/week_shift_2"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:gravity="center" android:text="G"
+            android:textSize="11sp" android:textStyle="bold"
+            android:textColor="#D3D1C7" android:background="#2C2C2A"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/week_day_3"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center" android:layout_marginEnd="2dp">
+        <TextView android:id="@+id/week_date_3"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="21" android:textSize="12sp" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/week_dow_3"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="일" android:textSize="10sp" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/week_shift_3"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:gravity="center" android:text="휴"
+            android:textSize="11sp" android:textStyle="bold"
+            android:textColor="#E24B4A" android:background="#FFFFFF"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/week_day_4"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center" android:layout_marginEnd="2dp">
+        <TextView android:id="@+id/week_date_4"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="22" android:textSize="12sp" android:textColor="#555555"/>
+        <TextView android:id="@+id/week_dow_4"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="월" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/week_shift_4"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:gravity="center" android:text="S"
+            android:textSize="11sp" android:textStyle="bold"
+            android:textColor="#F1EFE8" android:background="#888780"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/week_day_5"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center" android:layout_marginEnd="2dp">
+        <TextView android:id="@+id/week_date_5"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="23" android:textSize="12sp" android:textColor="#555555"/>
+        <TextView android:id="@+id/week_dow_5"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="화" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/week_shift_5"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:gravity="center" android:text="S"
+            android:textSize="11sp" android:textStyle="bold"
+            android:textColor="#F1EFE8" android:background="#888780"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/week_day_6"
+        android:layout_width="0dp" android:layout_height="match_parent"
+        android:layout_weight="1" android:orientation="vertical"
+        android:gravity="center">
+        <TextView android:id="@+id/week_date_6"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="24" android:textSize="12sp" android:textColor="#555555"/>
+        <TextView android:id="@+id/week_dow_6"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="수" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/week_shift_6"
+            android:layout_width="28dp" android:layout_height="28dp"
+            android:gravity="center" android:text="S"
+            android:textSize="11sp" android:textStyle="bold"
+            android:textColor="#F1EFE8" android:background="#888780"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 전체조 위젯: A/B/C/D 7일치 표 (알약 모양, 큰 폰트) -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_allteam_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFFFF"
+    android:padding="6dp">
+
+    <!-- 날짜+요일 헤더 행 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="32dp" android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:layout_width="20dp" android:layout_height="wrap_content" android:text="" />
+        <TextView android:id="@+id/at_date_0" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="20\n월" android:textSize="8sp" android:textStyle="bold" android:textColor="#378ADD" android:lineSpacingMultiplier="0.9"/>
+        <TextView android:id="@+id/at_date_1" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="21\n화" android:textSize="8sp" android:textColor="#555555" android:lineSpacingMultiplier="0.9"/>
+        <TextView android:id="@+id/at_date_2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="22\n수" android:textSize="8sp" android:textColor="#378ADD" android:lineSpacingMultiplier="0.9"/>
+        <TextView android:id="@+id/at_date_3" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="23\n목" android:textSize="8sp" android:textColor="#E24B4A" android:lineSpacingMultiplier="0.9"/>
+        <TextView android:id="@+id/at_date_4" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="24\n금" android:textSize="8sp" android:textColor="#555555" android:lineSpacingMultiplier="0.9"/>
+        <TextView android:id="@+id/at_date_5" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="25\n토" android:textSize="8sp" android:textColor="#555555" android:lineSpacingMultiplier="0.9"/>
+        <TextView android:id="@+id/at_date_6" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:text="26\n일" android:textSize="8sp" android:textColor="#555555" android:lineSpacingMultiplier="0.9"/>
+    </LinearLayout>
+
+    <!-- A조 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="2dp">
+        <TextView android:layout_width="20dp" android:layout_height="wrap_content" android:text="A" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/at_a_0" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_a_1" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_a_2" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="G" android:textSize="9sp" android:textStyle="bold" android:textColor="#D3D1C7" android:background="@drawable/pill_night"/>
+        <TextView android:id="@+id/at_a_3" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="G" android:textSize="9sp" android:textStyle="bold" android:textColor="#D3D1C7" android:background="@drawable/pill_night"/>
+        <TextView android:id="@+id/at_a_4" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="G" android:textSize="9sp" android:textStyle="bold" android:textColor="#D3D1C7" android:background="@drawable/pill_night"/>
+        <TextView android:id="@+id/at_a_5" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_a_6" android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+    </LinearLayout>
+
+    <!-- B조 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical" android:background="#F0F7FF">
+        <TextView android:layout_width="20dp" android:layout_height="wrap_content" android:text="B" android:textSize="10sp" android:textColor="#185FA5" android:textStyle="bold"/>
+        <TextView android:id="@+id/at_b_0" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="G" android:textSize="9sp" android:textStyle="bold" android:textColor="#D3D1C7" android:background="@drawable/pill_night"/>
+        <TextView android:id="@+id/at_b_1" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="G" android:textSize="9sp" android:textStyle="bold" android:textColor="#D3D1C7" android:background="@drawable/pill_night"/>
+        <TextView android:id="@+id/at_b_2" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_b_3" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="9sp" android:textStyle="bold" android:textColor="#F1EFE8" android:background="@drawable/pill_evening"/>
+        <TextView android:id="@+id/at_b_4" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="9sp" android:textStyle="bold" android:textColor="#F1EFE8" android:background="@drawable/pill_evening"/>
+        <TextView android:id="@+id/at_b_5" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="9sp" android:textStyle="bold" android:textColor="#F1EFE8" android:background="@drawable/pill_evening"/>
+        <TextView android:id="@+id/at_b_6" android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="9sp" android:textStyle="bold" android:textColor="#F1EFE8" android:background="@drawable/pill_evening"/>
+    </LinearLayout>
+
+    <!-- C조 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:layout_width="20dp" android:layout_height="wrap_content" android:text="C" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/at_c_0" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_c_1" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_c_2" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="D" android:textSize="9sp" android:textStyle="bold" android:textColor="#412402" android:background="@drawable/pill_day"/>
+        <TextView android:id="@+id/at_c_3" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="D" android:textSize="9sp" android:textStyle="bold" android:textColor="#412402" android:background="@drawable/pill_day"/>
+        <TextView android:id="@+id/at_c_4" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_c_5" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_c_6" android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:gravity="center" android:text="G" android:textSize="9sp" android:textStyle="bold" android:textColor="#D3D1C7" android:background="@drawable/pill_night"/>
+    </LinearLayout>
+
+    <!-- D조 -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:layout_width="20dp" android:layout_height="wrap_content" android:text="D" android:textSize="10sp" android:textColor="#888780"/>
+        <TextView android:id="@+id/at_d_0" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="DS" android:textSize="7sp" android:textStyle="bold" android:textColor="#E6F1FB" android:background="@drawable/pill_ds"/>
+        <TextView android:id="@+id/at_d_1" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="DS" android:textSize="7sp" android:textStyle="bold" android:textColor="#E6F1FB" android:background="@drawable/pill_ds"/>
+        <TextView android:id="@+id/at_d_2" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="S" android:textSize="9sp" android:textStyle="bold" android:textColor="#F1EFE8" android:background="@drawable/pill_evening"/>
+        <TextView android:id="@+id/at_d_3" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="휴" android:textSize="9sp" android:textStyle="bold" android:textColor="#E24B4A"/>
+        <TextView android:id="@+id/at_d_4" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="D" android:textSize="9sp" android:textStyle="bold" android:textColor="#412402" android:background="@drawable/pill_day"/>
+        <TextView android:id="@+id/at_d_5" android:layout_width="0dp" android:layout_height="15dp" android:layout_marginEnd="2dp" android:layout_weight="1" android:gravity="center" android:text="D" android:textSize="9sp" android:textStyle="bold" android:textColor="#412402" android:background="@drawable/pill_day"/>
+        <TextView android:id="@+id/at_d_6" android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:gravity="center" android:text="D" android:textSize="9sp" android:textStyle="bold" android:textColor="#412402" android:background="@drawable/pill_day"/>
+    </LinearLayout>
+
+</LinearLayout>
