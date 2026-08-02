@@ -1,0 +1,130 @@
+name: Build APK
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+
+      - name: Check repo structure
+        run: |
+          echo "=== 루트 파일 목록 ==="
+          ls -la
+          echo "=== lib 폴더 ==="
+          ls -la lib/ || echo "lib 없음"
+
+      - name: Create Flutter project scaffold
+        run: |
+          flutter create -t app cspi
+          cp -r lib/. cspi/lib/
+          cp pubspec.yaml cspi/pubspec.yaml
+
+      - name: Copy app icons
+        run: |
+          for density in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            mkdir -p cspi/android/app/src/main/res/mipmap-${density}
+            cp android_icons/mipmap-${density}/ic_launcher.png cspi/android/app/src/main/res/mipmap-${density}/ic_launcher.png
+            cp android_icons/mipmap-${density}/ic_launcher_round.png cspi/android/app/src/main/res/mipmap-${density}/ic_launcher_round.png
+          done
+
+      - name: Add widget string resources
+        run: |
+          mkdir -p cspi/android/app/src/main/res/values
+          cat > cspi/android/app/src/main/res/values/widget_strings.xml << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <resources>
+              <string name="widget_small1_desc">오늘 근무 (1칸)</string>
+              <string name="widget_weekly_desc">이번주 7일 근무 (4x1)</string>
+              <string name="widget_allteam_desc">전체조 7일 근무표 (5x2)</string>
+              <string name="widget_calendar_desc">월간 달력 근무표 + 공휴일 (4x3)</string>
+          </resources>
+          EOF
+
+      - name: Setup widget files
+        run: |
+          PKG="cspi/android/app/src/main/kotlin/com/example/cspi"
+          mkdir -p $PKG
+          cp android_widget/ShiftWidgetProvider.kt $PKG/
+          cp android_widget/AlarmScheduler.kt      $PKG/
+          cp android_widget/AlarmReceiver.kt       $PKG/
+          cp android_widget/AlarmActivity.kt       $PKG/
+          cp android_widget/AlarmService.kt        $PKG/
+          cp android_widget/MainActivity.kt        $PKG/
+          mkdir -p cspi/android/app/src/main/res/drawable
+          cp android_widget/widget_background.xml cspi/android/app/src/main/res/drawable/
+          cp lib/assets/alarm_character.png cspi/android/app/src/main/res/drawable/alarm_character.png
+          cp android_widget/badge_day.xml          cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_night.xml        cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_evening.xml      cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_ds.xml           cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_circle_day.xml      cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_circle_night.xml    cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_circle_evening.xml  cspi/android/app/src/main/res/drawable/
+          cp android_widget/badge_circle_ds.xml       cspi/android/app/src/main/res/drawable/
+          cp android_widget/pill_day.xml      cspi/android/app/src/main/res/drawable/
+          cp android_widget/pill_night.xml    cspi/android/app/src/main/res/drawable/
+          cp android_widget/pill_evening.xml  cspi/android/app/src/main/res/drawable/
+          cp android_widget/pill_ds.xml       cspi/android/app/src/main/res/drawable/
+          cp android_widget/today_border.xml  cspi/android/app/src/main/res/drawable/
+          mkdir -p cspi/android/app/src/main/res/layout
+          cp android_widget/widget_layout_small1.xml   cspi/android/app/src/main/res/layout/
+          cp android_widget/widget_layout_weekly.xml   cspi/android/app/src/main/res/layout/
+          cp android_widget/widget_layout_allteam.xml  cspi/android/app/src/main/res/layout/
+          cp android_widget/widget_layout_calendar.xml cspi/android/app/src/main/res/layout/
+          mkdir -p cspi/android/app/src/main/res/xml
+          cp android_widget_res/widget_info_small1.xml   cspi/android/app/src/main/res/xml/
+          cp android_widget_res/widget_info_weekly.xml   cspi/android/app/src/main/res/xml/
+          cp android_widget_res/widget_info_allteam.xml  cspi/android/app/src/main/res/xml/
+          cp android_widget_res/widget_info_calendar.xml cspi/android/app/src/main/res/xml/
+
+      - name: Register in AndroidManifest
+        run: |
+          M="cspi/android/app/src/main/AndroidManifest.xml"
+          sed -i 's|<application|<uses-permission android:name="android.permission.INTERNET"/>\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>\n    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>\n    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>\n    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>\n    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>\n    <uses-permission android:name="android.permission.VIBRATE"/>\n    <uses-permission android:name="android.permission.WAKE_LOCK"/>\n    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>\n    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>\n    <application|' $M
+          # MainActivity를 알람시계 앱으로 선언 → USE_FULL_SCREEN_INTENT 설치 시 자동 부여
+          sed -i 's|</activity>|<intent-filter><action android:name="android.intent.action.SET_ALARM"/><action android:name="android.intent.action.SHOW_ALARMS"/><category android:name="android.intent.category.DEFAULT"/></intent-filter></activity>|' $M
+          sed -i 's|</application>|        <receiver android:name=".ShiftWidgetSmall1" android:label="CSPI 오늘" android:exported="true"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_small1"/></receiver>\n        <receiver android:name=".ShiftWidgetWeekly" android:label="CSPI 주간 7일" android:exported="true"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_weekly"/></receiver>\n        <receiver android:name=".ShiftWidgetAllTeam" android:label="CSPI 전체조 7일" android:exported="true"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_allteam"/></receiver>\n        <receiver android:name=".ShiftWidgetCalendar" android:label="CSPI 달력" android:exported="true"><intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE"/></intent-filter><meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info_calendar"/></receiver>\n        <receiver android:name=".AlarmReceiver" android:exported="true"><intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/><action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/><action android:name="android.intent.action.QUICKBOOT_POWERON"/><action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/><action android:name="com.example.cspi.SET_DAILY_ALARM"/><action android:name="com.example.cspi.WAKE_UP_ALARM"/></intent-filter></receiver>\n        <activity android:name=".AlarmActivity" android:exported="false" android:showWhenLocked="true" android:turnScreenOn="true" android:excludeFromRecents="true" android:launchMode="singleTask" android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"/><service android:name=".AlarmService" android:exported="false" android:foregroundServiceType="mediaPlayback"/>\n    </application>|' $M
+
+      - name: Fix Kotlin version
+        run: |
+          cd cspi/android
+          sed -i 's/kotlin("android") version "[^"]*"/kotlin("android") version "1.9.23"/' settings.gradle
+          sed -i 's/id "org.jetbrains.kotlin.android" version "[^"]*"/id "org.jetbrains.kotlin.android" version "1.9.23" apply false/' settings.gradle
+
+      - name: Add appcompat dependency
+        run: |
+          G="cspi/android/app/build.gradle"
+          # AlarmActivity가 AppCompatActivity를 상속하므로 의존성 필요
+          if grep -q "dependencies {" "$G"; then
+            sed -i 's|dependencies {|dependencies {\n    implementation "androidx.appcompat:appcompat:1.6.1"\n    implementation "androidx.core:core-ktx:1.12.0"|' "$G"
+          else
+            printf '\ndependencies {\n    implementation "androidx.appcompat:appcompat:1.6.1"\n    implementation "androidx.core:core-ktx:1.12.0"\n}\n' >> "$G"
+          fi
+          echo "=== build.gradle dependencies ===" ; grep -A3 "dependencies {" "$G" | head -8
+
+      - name: Install packages
+        run: |
+          cd cspi
+          flutter pub get
+
+      - name: Build APK
+        run: |
+          cd cspi
+          flutter build apk --release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cspi-app
+          path: cspi/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
