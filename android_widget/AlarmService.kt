@@ -59,6 +59,21 @@ class AlarmService : Service() {
         startSound()
         startVibration()
 
+        // 다른 앱 사용 중/포그라운드 상태에서도 알람 화면을 강제로 띄움
+        // (포그라운드 서비스는 백그라운드 startActivity 제한의 예외)
+        try {
+            val fullScreen = Intent(this, AlarmActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                        Intent.FLAG_ACTIVITY_NO_USER_ACTION
+                putExtra("ALARM_LABEL", label)
+                putExtra("ALARM_SHIFT", shift)
+            }
+            startActivity(fullScreen)
+        } catch (e: Exception) {
+            // 혹시 막히면 알림의 fullScreenIntent가 대신 처리
+        }
+
         isRunning = true
         return START_STICKY
     }
